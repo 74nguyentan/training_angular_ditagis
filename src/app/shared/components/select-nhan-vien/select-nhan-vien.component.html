@@ -1,0 +1,12 @@
+<dn-auto-complete
+  [limit]="10"
+  [allValue]="allValue"
+  [values]="values"
+  fieldName="displayName"
+  fieldValue="userId"
+  (valueChange)="valueChange.emit($event)"
+  [fullWidth]="fullWidth"
+  [disabled]="disabled"
+  [(value)]="value"
+  placeholder="Tên nhân viên"
+></dn-auto-complete>

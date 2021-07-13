@@ -1,0 +1,28 @@
+.cell-tien-do {
+    padding: 4px 6px 4px 6px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    .du-an {
+      margin-right: 2px;
+    }
+    &.mCCTT {
+      background-color:rgb(128,128,128);
+      color: whitesmoke;
+    }
+    &.mDXD {
+      background-color: #ff9f43;
+    }
+    &.mHC {
+      background-color: #0026ff;
+      color: whitesmoke;
+    }
+    &.mCHC {
+      background-color: #fd79a773;
+    }
+    &.mHTH {
+      background-color: rgb(0,255,0);
+    }
+  }
+  

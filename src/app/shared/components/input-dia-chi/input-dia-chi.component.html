@@ -1,0 +1,44 @@
+<div class="mt-2">
+  <label>{{ title }}</label>
+  <div class="row">
+    <div class="col-md-6 col-xs-12 mb-1 mt-1" *ngIf="inputTinhTP">
+      <ga-tinh-tp
+        [(value)]="value.tinhTP"
+        [fieldValue]="null"
+        (valueChange)="value.tinhTP = $event || {}; valueChange.emit(value)"
+        [fullWidth]="true"
+      ></ga-tinh-tp>
+    </div>
+    <div class="col-md-6 col-xs-12 mb-1 mt-1">
+      <ga-quan-huyen
+        [maTinhTP]="inputTinhTP ? value?.tinhTP?.maTinhTP : 74"
+        [(value)]="value.quanHuyen"
+        [fieldValue]="null"
+        (valueChange)="value.quanHuyen = $event || {}; valueChange.emit(value)"
+        [fullWidth]="true"
+      ></ga-quan-huyen>
+    </div>
+    <div class="col-md-6 col-xs-12 mb-1 mt-1">
+      <ga-phuong-xa
+        [fieldValue]="null"
+        [maQuanHuyen]="value?.quanHuyen?.maQuanHuyen"
+        [(value)]="value.phuongXa"
+        (valueChange)="value.phuongXa = $event || {}; valueChange.emit(value)"
+        [fullWidth]="true"
+      ></ga-phuong-xa>
+    </div>
+    <div class="col-md-12 col-xs-12 mt-2">
+      <input
+        nbInput
+        [disabled]="
+          (!value.quanHuyen?.maQuanHuyen || !value.phuongXa.maPhuongXa) &&
+          (!value.maQuanHuyen || !value.maPhuongXa)
+        "
+        [fullWidth]="true"
+        [(ngModel)]="value.chiTiet"
+        (change)="valueChange.emit(value)"
+        placeholder="Tổ, thôn, ấp, làng, bản,...(*)"
+      />
+    </div>
+  </div>
+</div>

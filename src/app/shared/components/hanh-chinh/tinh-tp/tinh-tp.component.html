@@ -1,0 +1,14 @@
+<dn-auto-complete
+  #gaAuto
+  [service]="service"
+  [limit]="10"
+  [allValue]="allValue"
+  fieldName="tenTinhTP"
+  [fieldValue]="fieldValue"
+  [fullWidth]="fullWidth"
+  [value]="value"
+  (valueChange)="this.valueChange.emit($event)"
+  [disabled]="disabled"
+  [placeholder]="'Tỉnh/TP' + (required ? ' (*)' : '')"
+  [builder]="builder"
+></dn-auto-complete>

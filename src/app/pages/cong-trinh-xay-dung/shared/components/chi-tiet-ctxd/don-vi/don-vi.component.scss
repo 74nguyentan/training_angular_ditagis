@@ -1,0 +1,28 @@
+div.index {
+    position: absolute;
+    left: -18px;
+    top: 10px;
+    span {
+        font-family: 'Arial Bold', 'Arial', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 40px;
+        &.success{
+            color: #00D68F; 
+        }
+        &.danger{
+            color:#FF3D71;
+        }
+    }
+  
+  }
+  div.icon-delete{
+    position: absolute;
+    right: -18px;
+    top: 10px;
+    span {
+        font-size: 20px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+  }

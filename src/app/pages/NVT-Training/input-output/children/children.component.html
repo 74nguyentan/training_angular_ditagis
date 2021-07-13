@@ -1,0 +1,12 @@
+<h4 style="color: red;">children !</h4>
+<div class="row">
+    <div class="col-6">
+        <h6>INPUT</h6>
+        <p>Input from parent: <b style="color: red; ">{{childInput}}</b></p>
+    </div>
+    <div class="col-6">
+        <h6>OUTPUT</h6>
+        <input type="text" nbInput [(ngModel)]="value" (ngModelChange)="sendOuput()" >
+        <!-- <button class="btn btn-success" (click)="sendOuput()">Send Output</button> -->
+    </div>
+</div>

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~leaflet/dist/leaflet.css';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+@import '~ngn-datatable/themes/material.scss';
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+/* You can add global styles to this file, and also import other style files */
+@import '~leaflet/dist/leaflet.css';
+@import '~ditagis-leaflet/styles/ditagis-leaflet.css';
+@import '~leaflet-draw/dist/leaflet.draw.css';
+@import './table';
+// install the framework and custom global styles
+@include nb-install() {
+  // framework global styles
+  @include nb-theme-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+}
+
+.form-input {
+  margin: 0.2rem;
+}
+
+.btn-action {
+  white-space: pre-wrap !important;
+}
+
+label {
+  color: #8f9bb3;
+}
+
+.ngn-datatable.material {
+  box-shadow: none;
+}
+
+.leaflet-container {
+  a {
+    text-decoration: none !important;
+  }
+}
+html {
+  left: 0px;
+  top: 0px !important;
+}
+.cdk-global-scrollblock {
+  position: fixed;
+  width: 100%;
+  overflow-y: hidden;
+}

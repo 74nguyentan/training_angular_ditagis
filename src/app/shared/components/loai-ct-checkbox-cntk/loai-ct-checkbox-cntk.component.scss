@@ -1,0 +1,22 @@
+.filter-loai-ho-so {
+  margin: 0 8px;
+  span {
+    margin-right: 30px;
+  }
+  &.m1 {
+    span {
+      color: #00d68f;
+    }
+    nb-badge {
+      background-color: #00d68f;
+    }
+  }
+  &.m2 {
+    span {
+      color: #3366ff;
+    }
+    nb-badge {
+      background-color: #3366ff;
+    }
+  }
+}

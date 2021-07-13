@@ -1,0 +1,259 @@
+<div class="row">
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="heThongKyThuat?.heThongThangMay"
+      (change)="onChange('heThongThangMay', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Hệ thống thang máy"
+    />
+  </div>
+  <div class="col-md-6 bai-dap">
+    <nb-select
+      placeholder="Bãi đáp trực thăng"
+      [fullWidth]="true"
+      [selected]="heThongKyThuat?.baiDapTrucThang"
+      (selectedChange)="onChange('baiDapTrucThang', $event)"
+    >
+      <nb-option [value]="true">Có</nb-option>
+      <nb-option [value]="false">Không</nb-option>
+    </nb-select>
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="heThongKyThuat?.heThongThangCuon"
+      (change)="onChange('heThongThangCuon', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Hệ thống thanh cuốn"
+    />
+  </div>
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.khung"
+      (change)="onChange('khung', $event.target.value)"
+      placeholder="Khung"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="heThongKyThuat?.mayPhatDienDuPhong"
+      (change)="onChange('mayPhatDienDuPhong', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Máy phát điện dự phòng"
+    />
+  </div>
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="heThongKyThuat?.san"
+      (change)="onChange('san', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Sàn"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6 tuy-chinh">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenDanhMuc"
+      placeholder="Hệ thống PCCC"
+      fieldValue="maDanhMuc"
+      [service]="heThongPCCCSerive"
+      [isAdd]="true"
+      (valueChange)="onChange('maHeThongPCCC', $event)"
+      [value]="heThongKyThuat?.maHeThongPCCC"
+    >
+    </dn-auto-complete>
+  </div>
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat.mong"
+      (change)="onChange('mong', $event.target.value)"
+      placeholder="Móng"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6 tuy-chinh">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenDanhMuc"
+      placeholder="Hệ thống sét tiếp địa"
+      fieldValue="maDanhMuc"
+      [service]="heThongSetTiepDiaService"
+      [isAdd]="true"
+      (valueChange)="onChange('maHeThongSetTiepDia', $event)"
+      [value]="heThongKyThuat?.maHeThongSetTiepDia"
+    >
+    </dn-auto-complete>
+  </div>
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.mai"
+      (change)="onChange('mai', $event.target.value)"
+      placeholder="Mái"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6 tuy-chinh">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenDanhMuc"
+      placeholder="Hệ thống xử lý rác"
+      fieldValue="maDanhMuc"
+      [service]="heThongXuLyRacService"
+      [isAdd]="true"
+      (valueChange)="onChange('maHeThongXuLyRac', $event)"
+      [value]="heThongKyThuat?.maHeThongXuLyRac"
+    >
+    </dn-auto-complete>
+  </div>
+  <div class="col-md-6">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.chieuSauMong"
+      (change)="onChange('chieuSauMong', $event.target.value)"
+      placeholder="Chiều sâu móng"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenDanhMuc"
+      placeholder="Hệ thống điều hòa không khí"
+      fieldValue="maDanhMuc"
+      [service]="heThongDieuHoaKhongKhiService"
+      [isAdd]="true"
+      (valueChange)="onChange('maHeThongDieuHoaKhongKhi', $event)"
+      [value]="heThongKyThuat?.maHeThongDieuHoaKhongKhi"
+    >
+    </dn-auto-complete>
+  </div>
+  <div class="col-md-6">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenDanhMuc"
+      placeholder="Trụ họng chữa cháy"
+      fieldValue="maDanhMuc"
+      [service]="truHongChuaChayService"
+      [isAdd]="true"
+      (valueChange)="onChange('maTruHongChuaChay', $event)"
+      [value]="heThongKyThuat?.maTruHongChuaChay"
+    >
+    </dn-auto-complete>
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <nb-select
+      placeholder="Hệ thống cung cấp gas"
+      [fullWidth]="true"
+      [selected]="heThongKyThuat?.heThongCungCapGas"
+      (selectedChange)="onChange('heThongCungCapGas', $event)"
+    >
+      <nb-option [value]="true">Có</nb-option>
+      <nb-option [value]="false">Không</nb-option>
+    </nb-select>
+  </div>
+  <div class="col-md-6">
+    <nb-select
+      placeholder="Sân thượng"
+      [fullWidth]="true"
+      [selected]="heThongKyThuat?.sanThuong"
+      (selectedChange)="onChange('sanThuong', $event)"
+    >
+      <nb-option [value]="true">Có</nb-option>
+      <nb-option [value]="false">Không</nb-option>
+    </nb-select>
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.soChoDeXe"
+      (change)="onChange('soChoDeXe', $event.target.value)"
+      placeholder="Số chỗ để xe"
+    />
+  </div>
+  <div class="col-md-6">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.dienTichSanThuong"
+      (change)="onChange('dienTichSanThuong', $event.target.value)"
+      placeholder="Diện tích sân thượng"
+    />
+  </div>
+</div>
+
+<div class="row margin-top">
+  <div class="col-md-6">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="heThongKyThuat?.ghiChu"
+      (change)="onChange('ghiChu', $event.target.value)"
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>

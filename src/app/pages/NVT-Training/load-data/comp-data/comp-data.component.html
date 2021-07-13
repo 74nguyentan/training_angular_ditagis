@@ -1,0 +1,17 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">ten cong trinh</th>
+        <th scope="col">ten tien do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataContainer">
+        <td>{{item.maCTXD}}</td>
+        <td>{{item.tenCongTrinh}}</td>
+        <td>{{item.tienDo.tenTienDo}}</td>
+      </tr>
+     
+    </tbody>
+  </table>

@@ -1,0 +1,47 @@
+.filter-tien-do {
+    margin: 0 8px;
+    span {
+      margin-right: 30px;
+    }
+    &.mCCTT {
+      span {
+        color:rgb(128,128,128);
+      }
+      nb-badge {
+        background-color:rgb(128,128,128);;
+      }
+    }
+    &.mDXD {
+      span {
+        color:#ff9f43;
+      }
+      nb-badge {
+        background-color: #ff9f43;
+      }
+    }
+    &.mHC {
+      span {
+        color: #0026ff;
+      }
+      nb-badge {
+        background-color: #0026ff;
+      }
+    }
+    &.mCHC {
+      span {
+        color: #fd79a773;
+      }
+      nb-badge {
+        background-color: #fd79a773;
+      }
+    }
+    &.mHTH {
+      span {
+        color:rgb(0,255,0);
+      }
+      nb-badge {
+        background-color: rgb(0,255,0);
+      }
+    }
+  }
+  

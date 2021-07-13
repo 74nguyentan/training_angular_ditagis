@@ -1,0 +1,78 @@
+<div class="d-flex">
+  <div class="flex-grow-1">
+    <dn-auto-complete
+      [service]="service"
+      [limit]="10"
+      [allValue]="allValue"
+      fieldName="tenChuDauTu"
+      fieldValue="maChuDauTu"
+      (valueChange)="valueChange.emit($event)"
+      [value]="value"
+      [placeholder]="'Chủ đầu tư' + (required ? ' (*)' : '')"
+      [fullWidth]="true"
+    ></dn-auto-complete>
+  </div>
+  <button *ngIf="isAdd" nbButton ghost (click)="dlgAdd = true">+</button>
+</div>
+
+<dn-dialog *ngIf="dlgAdd" [open]="true">
+  <dn-dialog-header>Thêm mới chủ đầu tư</dn-dialog-header>
+  <dn-dialog-body>
+    <div class="row">
+      <div class="col-md-6">
+        <input
+          nbInput
+          dnInput
+          [fullWidth]="true"
+          label="Tên chủ đâu tư"
+          [required]="true"
+          [(ngModel)]="entityAdd.tenChuDauTu"
+        />
+      </div>
+      <div class="col-md-6">
+        <input
+          nbInput
+          dnInput
+          [fullWidth]="true"
+          label="Chức vụ"
+          [required]="true"
+          [(ngModel)]="entityAdd.chucVu"
+        />
+      </div>
+      <div class="col-md-6">
+        <input
+          nbInput
+          dnInput
+          [fullWidth]="true"
+          label="Số điện thoại"
+          [required]="true"
+          [(ngModel)]="entityAdd.soDienThoai"
+        />
+      </div>
+      <div class="col-md-6">
+        <input
+          nbInput
+          dnInput
+          [fullWidth]="true"
+          label="Người đại diện"
+          [required]="true"
+          [(ngModel)]="entityAdd.nguoiDaiDien"
+        />
+      </div>
+      <div class="col-md-12">
+        <ga-input-dia-chi
+          [inputTinhTP]="true"
+          [value]="entityAdd.diaChiLienHe"
+        ></ga-input-dia-chi>
+      </div>
+    </div>
+  </dn-dialog-body>
+  <dn-dialog-footer>
+    <div class="d-flex justify-content-between">
+      <button nbButton size="small" ghost (click)="closeDlg()">Hủy</button>
+      <button nbButton size="small" status="primary" (click)="themMoiHandle()">
+        Thêm
+      </button>
+    </div>
+  </dn-dialog-footer>
+</dn-dialog>

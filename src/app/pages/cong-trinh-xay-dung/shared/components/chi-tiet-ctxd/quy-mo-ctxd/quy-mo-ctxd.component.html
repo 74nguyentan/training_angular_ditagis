@@ -1,0 +1,300 @@
+<div class="row">
+  <div class="col-md-6 p-2">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenLoai"
+      placeholder="Loại công trình"
+      fieldValue="maLoai"
+      [service]="loaiCongTrinhXayDungService"
+      [isAdd]="true"
+      (valueChange)="change('maLoaiCongTrinh', $event)"
+      [value]="quyMo?.maLoaiCongTrinh"
+    >
+    </dn-auto-complete>
+  </div>
+  <div class="col-md-6 p-2">
+    <dn-auto-complete
+      [fullWidth]="true"
+      fieldName="tenCapCongTrinh"
+      placeholder="Cấp công trình"
+      fieldValue="maCapCongTrinh"
+      [service]="capCongTrinhService"
+      [isAdd]="true"
+      (valueChange)="change('maCapCongTrinh', $event)"
+      [value]="quyMo.maCapCongTrinh"
+    >
+    </dn-auto-complete>
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-6">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      [value]="quyMo?.dienTichXayDung"
+      (change)="change('dienTichXayDung', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Diện tích (m2)"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      [value]="quyMo?.cotXayDung?.giaTri"
+      (change)="changeThongSo('cotXayDung', 'giaTri', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Cốt xây dựng (m)"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      (change)="changeThongSo('cotXayDung', 'noiDung', $event.target.value)"
+      [value]="quyMo?.cotXayDung?.noiDung"
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.tongDienTichSan?.giaTri"
+      (change)="changeThongSo('tongDienTichSan', 'giaTri', $event.target.value)"
+      placeholder="Tổng diện tích sàn (m)"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <textarea
+      nbInput
+      fullWidth
+      [value]="quyMo?.tongDienTichSan?.noiDung"
+      (change)="
+        changeThongSo('tongDienTichSan', 'noiDung', $event.target.value)
+      "
+      dnInput
+      [label]="true"
+      placeholder="Ghi chú"
+    >
+    </textarea>
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.chieuCaoCongTrinh?.giaTri"
+      (change)="
+        changeThongSo('chieuCaoCongTrinh', 'giaTri', $event.target.value)
+      "
+      placeholder="Chiều cao công trình (m)"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <textarea
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.chieuCaoCongTrinh?.noiDung"
+      (change)="
+        changeThongSo('chieuCaoCongTrinh', 'noiDung', $event.target.value)
+      "
+      placeholder="Ghi chú"
+    >
+    </textarea>
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.soTang?.giaTri"
+      (change)="changeThongSo('soTang', 'giaTri', $event.target.value)"
+      placeholder="Số tầng"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="quyMo?.soTang?.noiDung"
+      (change)="changeThongSo('soTang', 'noiDung', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      [value]="quyMo?.soLuongCauThangThoatHiem?.giaTri"
+      (change)="
+        changeThongSo('soLuongCauThangThoatHiem', 'giaTri', $event.target.value)
+      "
+      dnInput
+      [label]="true"
+      placeholder="Số lượng cầu thang thoát hiểm"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.soLuongCauThangThoatHiem?.noiDung"
+      (change)="
+        changeThongSo(
+          'soLuongCauThangThoatHiem',
+          'noiDung',
+          $event.target.value
+        )
+      "
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.soLuongLoiThoatHiem?.giaTri"
+      (change)="
+        changeThongSo('soLuongLoiThoatHiem', 'giaTri', $event.target.value)
+      "
+      placeholder="Số lượng lối thoát hiểm"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.soLuongLoiThoatHiem?.noiDung"
+      (change)="
+        changeThongSo('soLuongLoiThoatHiem', 'noiDung', $event.target.value)
+      "
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-md-4 col-sm-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      [value]="quyMo?.chieuCaoTangHam?.giaTri"
+      dnInput
+      [label]="true"
+      (change)="changeThongSo('chieuCaoTangHam', 'giaTri', $event.target.value)"
+      placeholder="Chiều cao tầng hầm"
+    />
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      [value]="quyMo?.chieuCaoTangHam?.noiDung"
+      (change)="
+        changeThongSo('chieuCaoTangHam', 'noiDung', $event.target.value)
+      "
+      dnInput
+      [label]="true"
+      placeholder="Ghi chú"
+    />
+  </div>
+</div>
+
+<div class="row p-3">
+  <div class="col-6 col-md-4">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo?.congNang"
+      (change)="change('congNang', $event.target.value)"
+      placeholder="Công năng"
+    />
+  </div>
+
+  <div class="col-6 col-md-4">
+    <input
+      type="text"
+      nbInput
+      fullWidth
+      dnInput
+      [label]="true"
+      [value]="quyMo.congSuat"
+      (change)="change('congSuat', $event.target.value)"
+      placeholder="Công suất"
+    />
+  </div>
+
+  <div class="col-6 col-md-4">
+    <input
+      ngxNumberFormat="###,###,###,###,###"
+      nbInput
+      fullWidth
+      [value]="quyMo?.tuoiThoCongTrinh"
+      (change)="change('tuoiThoCongTrinh', $event.target.value)"
+      dnInput
+      [label]="true"
+      placeholder="Tuổi thọ công trình theo thiết kế"
+    />
+  </div>
+</div>

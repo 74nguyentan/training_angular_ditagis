@@ -1,0 +1,14 @@
+<div class="row d-flex">
+  <div class="mr-2">
+    <nb-checkbox [(checked)]="isCheckAll"> Tất cả </nb-checkbox>
+  </div>
+
+  <ga-loai-ct-checkbox
+    *ngFor="let item of lstLoaiCongTrinh"
+    [maLoai]="item.maLoai"
+    [tenLoai]="item.tenLoai"
+    [checked]="isCheckedTinhTrangFilter(item.maLoai)"
+    status="basic"
+    (checkedChange)="thayDoiTrangThaiFilter(item.maLoai, $event)"
+  ></ga-loai-ct-checkbox>
+</div>

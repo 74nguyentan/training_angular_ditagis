@@ -1,0 +1,135 @@
+<nb-card>
+  <nb-card-header>Quản lý công trình</nb-card-header>
+  <nb-card-body>
+    <nb-checkbox
+      (checkedChange)="thayDoiTinhTrang($event)"
+      [checked]="checkAll"
+    >
+      Tất cả
+    </nb-checkbox>
+    <ga-tien-do-checkbox
+      *ngFor="let item of lstTienDo"
+      [maTienDo]="item.maTienDo"
+      [tenTienDo]="item.tenTienDo"
+      [checked]="isCheckedTinhTrangFilter(item.maTienDo)"
+      status="basic"
+      (checkedChange)="thayDoiTrangThaiFilter(item.maTienDo, $event)"
+    ></ga-tien-do-checkbox>
+    <div class="row d-flex">
+      <div class="mr-3 p-2">
+        <ga-select-ten-ct-xay-dung
+          [allValue]="true"
+          [(value)]="entityFilter.maCTXD"
+          fullWidth
+        ></ga-select-ten-ct-xay-dung>
+      </div>
+
+      <div class="mr-3 p-2">
+        <ga-quan-huyen
+          [allValue]="true"
+          [(value)]="entityFilter.diaChi.maQuanHuyen"
+          [maTinhTP]="74"
+        ></ga-quan-huyen>
+      </div>
+
+      <div class="mr-3 p-2">
+        <ga-phuong-xa
+          [allValue]="true"
+          [maQuanHuyen]="entityFilter.diaChi.maQuanHuyen"
+          [(value)]="entityFilter.diaChi.maPhuongXa"
+        ></ga-phuong-xa>
+      </div>
+
+      <div class="mr-3 p-2">
+        <ga-select-chu-dau-tu
+          [allValue]="true"
+          [(value)]="entityFilter.chuDauTu.maChuDauTu"
+          fullWidth
+        ></ga-select-chu-dau-tu>
+      </div>
+      <div class="mr-1 p-2">
+        <button nbButton outline status="primary" (click)="table.loadData()">
+          Lọc
+        </button>
+      </div>
+      <div class="xuat-excel">
+        <ga-xuat-excel [table]="table"></ga-xuat-excel>
+      </div>
+    </div>
+    <ngn-datatable
+      class="material"
+      #table
+      (activate)="clickRow($event)"
+      selectionType="single"
+      [datatableService]="datatableService"
+      [externalPaging]="true"
+      [limit]="10"
+      [scrollbarH]="true"
+    >
+      <ngn-datatable-column
+        prop="tenCongTrinh"
+        name="Tên công trình"
+        [width]="300"
+        [frozenLeft]="true"
+        [flexGrow]="2"
+      >
+        <ng-template ngn-datatable-cell-template let-value="value">
+          <span [nbTooltip]="value">{{ value }}</span>
+        </ng-template>
+      </ngn-datatable-column>
+
+      <ngn-datatable-column
+        prop="tienDo"
+        name="Tình trạng"
+        [width]="220"
+        [flexGrow]="2"
+      >
+        <ng-template
+          ngn-datatable-cell-template
+          let-value="value"
+          let-row="row"
+        >
+          <ga-cell-tien-do [maTienDo]="value.maTienDo">
+            {{ value.tenTienDo }}
+          </ga-cell-tien-do>
+        </ng-template>
+      </ngn-datatable-column>
+
+      <ngn-datatable-column
+        prop="chuDauTu.tenChuDauTu"
+        name="Chủ đầu tư"
+        [width]="200"
+        [flexGrow]="4"
+      >
+        <ng-template ngn-datatable-cell-template let-value="value">
+          <span [nbTooltip]="value">{{ value }}</span>
+        </ng-template>
+      </ngn-datatable-column>
+
+      <ngn-datatable-column
+        prop="diaChi"
+        name="Địa điểm"
+        [width]="220"
+        [flexGrow]="4"
+      >
+        <ng-template ngn-datatable-cell-template let-value="value">
+          <ga-table-cell-dia-chi [value]="value"></ga-table-cell-dia-chi>
+        </ng-template>
+      </ngn-datatable-column>
+
+      <ngn-datatable-column
+        prop="dienTich"
+        name="Diện tích"
+        [width]="120"
+        [flexGrow]="2"
+      >
+        <ng-template ngn-datatable-cell-template let-value="value">
+          <span>
+            {{ (value | number) || 0 }} m
+            <sup>2</sup>
+          </span>
+        </ng-template>
+      </ngn-datatable-column>
+    </ngn-datatable>
+  </nb-card-body>
+</nb-card>

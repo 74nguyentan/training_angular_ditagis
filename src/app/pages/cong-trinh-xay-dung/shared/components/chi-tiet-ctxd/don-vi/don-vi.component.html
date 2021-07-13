@@ -1,0 +1,33 @@
+<nb-card>
+    <nb-card-header>
+      Đơn vị hoặc người chủ nhiệm thiết kế
+    </nb-card-header>
+    <nb-card-body style="min-height: 200px">
+      <div class="mb-3" *ngFor="let item of lstChiTietDonVi; let i = index">
+        <div class="row position-relative mr-3 ml-3">
+          <div class="index">
+            <span [ngClass]="{success:item.isValid,danger:!item.isValid}">{{i+1}}</span>
+          </div>
+          <div class="col-md-4">
+            <ga-vai-tro [fullWidth]="true" [disabled]="!isEdit" [(value)]="item.maVaiTroDV" (valueChange)="changValueChiTietDonVi(i, item.id)">
+            </ga-vai-tro>
+          </div>
+          <div class="col-md-4">
+            <ga-don-vi [fullWidth]="true" [disabled]="!isEdit" [isAdd]="true" [(value)]="item.maDonVi" (valueChange)="changValueChiTietDonVi(i, item.id)">
+            </ga-don-vi>
+            <!-- (valueChange)="item.maDonVi = $event" -->
+          </div>
+          <div class="col-md-4">
+            <ga-chung-chi [fullWidth]="true" [disabled]="!isEdit" [isAdd]="true" [maDonVi]="item.maDonVi" [(value)]="item.maChungChi"
+              (valueChange)="changValueChiTietDonVi(i, item.id)"></ga-chung-chi>
+            <!-- (valueChange)="item.maDonVi = $event" -->
+          </div>
+          <div class="icon-delete">
+            <span nbTooltip="Xóa" (click)="
+           deleteChiTietDonVi(i, item.id)
+            ">X</span>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>

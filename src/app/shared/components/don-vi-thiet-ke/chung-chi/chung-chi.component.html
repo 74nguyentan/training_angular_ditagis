@@ -1,0 +1,65 @@
+<dn-auto-complete
+  #ac
+  [limit]="10"
+  [disabled]="disabled"
+  [builder]="builder"
+  [service]="service"
+  [allValue]="allValue"
+  fieldName="so"
+  fieldValue="maChungChi"
+  [fullWidth]="fullWidth"
+  [value]="value"
+  [isAdd]="isAdd"
+  [handleThemMoi]="themMoiChungChi"
+  (valueChange)="valueChange.emit($event)"
+  placeholder="Chứng chỉ (*)"
+>
+  <dn-auto-complete-add-content>
+    <div class="mt-1 mb-1">
+      <ga-don-vi
+        [fullWidth]="true"
+        [disabled]="maDonVi ? true : false"
+        [value]="maDonVi"
+        (valueChange)="newChungChi.maDonVi = $event"
+      ></ga-don-vi>
+      <!-- (valueChange)="newChungChi.maDonVi = $event" -->
+    </div>
+    <input
+      class="mt-1 mb-1"
+      [fullWidth]="true"
+      nbInput
+      placeholder="Tên chứng chỉ (*)"
+      [(ngModel)]="newChungChi.chungChiHanhNghe"
+    />
+    <input
+      class="mt-1 mb-1"
+      [fullWidth]="true"
+      nbInput
+      placeholder="Ngày cấp (*)"
+      [nbDatepicker]="datepicker"
+      [(ngModel)]="newChungChi.ngayCap"
+    />
+    <nb-datepicker #datepicker></nb-datepicker>
+    <input
+      class="mt-1 mb-1"
+      [fullWidth]="true"
+      nbInput
+      placeholder="Số (*)"
+      [(ngModel)]="newChungChi.so"
+    />
+    <input
+      class="mt-1 mb-1"
+      [fullWidth]="true"
+      nbInput
+      placeholder="Nơi cấp (*)"
+      [(ngModel)]="newChungChi.noiCap"
+    />
+    <input
+      class="mt-1 mb-1"
+      [fullWidth]="true"
+      nbInput
+      placeholder="Ghi chú"
+      [(ngModel)]="newChungChi.ghiChu"
+    />
+  </dn-auto-complete-add-content>
+</dn-auto-complete>

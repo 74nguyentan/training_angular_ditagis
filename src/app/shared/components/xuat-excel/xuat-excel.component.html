@@ -1,0 +1,20 @@
+<button
+  nbButton
+  outline
+  status="info"
+  [nbSpinner]="loading"
+  [disabled]="loading"
+  (click)="handleClick($event)"
+  nbTooltip="Xuất excel"
+>
+  <i class="far fa-file-excel"></i>
+</button>
+
+<button
+  hidden
+  exportExcel
+  [table]="table"
+  [renderCell]="renderCellExcel"
+  [renderHeader]="renderHeader"
+  (excelFinally)="loading = false"
+></button>

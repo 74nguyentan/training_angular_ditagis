@@ -1,0 +1,16 @@
+<ngn-datatable #table class="material striped" [limit]="10" (activate)="selectTep($event)"
+    columnMode="flex" [footerHeight]="50"  [datatableService]="datatableService" [rowHeight]="45">
+    <ngn-datatable-column prop="name" name="Tên" [flexGrow]="3">
+        <ng-template ngn-datatable-cell-template let-value="value" let-row="row">
+            <img [src]="row.iconLink" />
+            {{value}}
+        </ng-template>
+    </ngn-datatable-column>
+    <ngn-datatable-column prop="createTime" name="Ngày tạo" [flexGrow]="1">
+        <ng-template ngn-datatable-cell-template let-value="value">
+            {{ value | date: 'dd/MM/yyyy' }}
+        </ng-template>
+    </ngn-datatable-column>
+    <ngn-datatable-column prop="owner.username" name="Người tạo" [flexGrow]="1"></ngn-datatable-column>
+    <ngn-datatable-column prop="mimeType" name="Loại tệp" [flexGrow]="1"></ngn-datatable-column>
+</ngn-datatable>

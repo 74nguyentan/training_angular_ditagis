@@ -1,0 +1,116 @@
+<nb-card>
+  <nb-card-header>Tệp đính kèm</nb-card-header>
+  <nb-card-body>
+    <div class="wp_category">
+      <p
+        [style.color]="thuMucMacDinh === thuMucMacDinhEnum.ThuMucCuaToi?'#36f': 'black'"
+        (click)="changeFolder(thuMucMacDinhEnum.ThuMucCuaToi)"
+      >
+        Không gian của tôi
+      </p>
+      <p [style.color]="thuMucMacDinh === thuMucMacDinhEnum.DuocChiaSe? '#36f': 'black'" (click)="changeFolder(thuMucMacDinhEnum.DuocChiaSe)">
+        Được chia sẻ
+      </p>
+    </div>
+    <div>
+      <button
+        nbButton
+        outline
+        status="primary"
+        *ngIf="status.button"
+        (click)="openInputFile()"
+      >
+        Thêm tệp
+      </button>
+      <input
+        type="file"
+        style="display: none"
+        #file
+        nbInput
+        (change)="uploadTep($event)"
+      />
+      <!-- <button (click)="uploadTep()" id="upload_file" style="display: none;"></button> -->
+    </div>
+    <div class="path margin-bottom">
+      <ul class="lst-items-path">
+        <li (click)="loadDuongDan(firstData.id)">{{ firstData.name }}</li>
+        <li style="display: flex" *ngIf="lstDataHiden">
+          <nb-icon
+            icon="arrow-ios-forward-outline"
+            style="margin-top: 5px"
+          ></nb-icon>
+          <button
+            class="dot"
+            title="Hiển thị đường dẫn"
+            [nbPopover]="popMenuPath"
+            nbPopoverPlacement="bottom"
+          >
+            ...
+          </button>
+        </li>
+        <li *ngFor="let item of lstData" (click)="loadDuongDan(item.id)">
+          <nb-icon icon="arrow-ios-forward-outline"></nb-icon>
+          <a title="{{ item.name }}">{{ item.name }}</a>
+        </li>
+      </ul>
+      <div
+        class="wp_search"
+        style="position: relative; display: flex; align-items: center"
+      >
+        <input
+          type="text"
+          style="text-indent: 20px"
+          nbInput
+          status="basic"
+          (keyup)="searchFile($event)"
+          [(ngModel)]="valueSearchFile"
+          placeholder="Tìm kiếm"
+        />
+        <nb-icon
+          nbPrefix
+          icon="search-outline"
+          pack="eva"
+          style="font-size: 25px; position: absolute; left: 10px; color: gray"
+        ></nb-icon>
+        <nb-list *ngIf="lstFileResult.length">
+          <nb-list-item
+            *ngFor="let item of lstFileResult"
+            (click)="selectTepTimKiem(item)"
+          >
+            <p class="txt_overflow">
+              <img [src]="item.iconLink" /> {{ item.name }}
+            </p>
+          </nb-list-item>
+        </nb-list>
+      </div>
+    </div>
+    <ng-container [ngSwitch]="thuMucMacDinh">
+      <ga-khong-gian-cua-toi *ngSwitchCase="thuMucMacDinhEnum.ThuMucCuaToi"
+      [clickDuongDanTep]="clickDuongDanTep.asObservable()"
+      (selectedEvent)="selectedEvent.emit($event)"
+      (reloadDuongDan)="loadDuongDan($event)"
+      [fileTypeSelect]="fileTypeSelect"
+      ></ga-khong-gian-cua-toi>
+      <ga-duoc-chia-se
+      *ngSwitchCase="thuMucMacDinhEnum.DuocChiaSe"
+      [clickDuongDanTep]="clickDuongDanTep.asObservable()"
+      (selectedEvent)="selectedEvent.emit($event)"
+      (reloadDuongDan)="loadDuongDan($event)"
+      [fileTypeSelect]="fileTypeSelect"
+      >
+      </ga-duoc-chia-se>
+    </ng-container>
+  </nb-card-body>
+</nb-card>
+<ng-template #popMenuPath>
+  <nb-list>
+    <nb-list-item
+      *ngFor="let item of lstDataHiden"
+      (click)="loadDuongDan(item.id)"
+      style="cursor: pointer"
+      title="{{ item.name }}"
+    >
+      <p>{{ item.name }}</p>
+    </nb-list-item>
+  </nb-list>
+</ng-template>

@@ -1,0 +1,14 @@
+<nb-checkbox
+  class="filter-tien-do"
+  [ngClass]="getLoaiClass(maLoai)"
+  [checked]="checked"
+  status="basic"
+  (checkedChange)="checkedChange.emit($event)"
+>
+  <span>
+    <ng-container *ngIf="tenLoai">{{tenLoai}}</ng-container>
+    <ng-content></ng-content
+  >
+</span>
+  <nb-badge *ngIf="badge" [text]="badge"></nb-badge>
+</nb-checkbox>

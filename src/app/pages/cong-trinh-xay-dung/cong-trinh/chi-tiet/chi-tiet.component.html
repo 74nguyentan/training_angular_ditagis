@@ -1,0 +1,176 @@
+<nb-card>
+  <nb-card-header class="d-flex justify-content-between">
+    <h1>{{ congTrinhXayDung?.tenCongTrinh }}</h1>
+    <div class="du-an">
+      <nb-select
+        placeholder="Tình trạng công trình"
+        class="m-2"
+        [selected]="congTrinhXayDung?.maTienDo"
+      >
+        <nb-option
+          *ngFor="let item of lstTienDo"
+          [value]="item.maTienDo"
+          (click)="onChange(item.maTienDo)"
+          >{{ item.tenTienDo }}</nb-option
+        >
+      </nb-select>
+      <button nbButton class="m-2">Xóa</button>
+    </div>
+  </nb-card-header>
+  <nb-accordion multi>
+    <nb-accordion-item>
+      <nb-accordion-item-header>
+        Thông tin chủ đầu tư
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="row">
+          <div class="col-6">
+            <nb-select
+              placeholder="Tên chủ đầu tư"
+              [fullWidth]="true"
+              [selected]="congTrinhXayDung?.maChuDauTu"
+            >
+              <nb-option
+                *ngFor="let dt of lstChuDauTu"
+                [value]="dt.maChuDauTu"
+                (click)="onSelectedChange(dt.maChuDauTu)"
+                >{{ dt.tenChuDauTu }}</nb-option
+              >
+            </nb-select>
+          </div>
+
+          <div class="col-4">
+            <span class="thong-tin" (click)="thongTin()"
+              >Sửa thông tin chủ đầu tư</span
+            >
+          </div>
+        </div>
+
+        <div class="row justify-content-start">
+          <div class="col-6">
+            <span
+              >Chức vụ:
+              <strong *ngIf="!fieldEdit.chucVu">{{
+                chuDauTu?.chucVu || 'Chưa có thông tin'
+              }}</strong>
+              <input
+                fieldSize="tiny"
+                nbInput
+                *ngIf="fieldEdit.chucVu"
+                (blur)="capNhatGiaTri()"
+                [(ngModel)]="fieldEdit.chucVu"
+              />
+            </span>
+          </div>
+          <div class="col-4">
+            <span
+              >Người đại diện:
+              <strong *ngIf="!fieldEdit.nguoiDaiDien">{{
+                chuDauTu?.nguoiDaiDien || 'Chưa có thông tin'
+              }}</strong>
+              <input
+                fieldSize="tiny"
+                nbInput
+                *ngIf="fieldEdit.nguoiDaiDien"
+                [value]="fieldEdit.nguoiDaiDien"
+                (blur)="capNhatGiaTri()"
+                [(ngModel)]="fieldEdit.nguoiDaiDien"
+              />
+            </span>
+          </div>
+        </div>
+        <p>
+          Địa chỉ liên hệ:
+          <strong>{{ chuDauTu?.diaChiLienHe || 'Chưa có thông tin' }}</strong>
+        </p>
+        <p>
+          Số điện thoại:
+          <strong *ngIf="!fieldEdit.soDienThoai">{{
+            chuDauTu?.soDienThoai || 'Chưa có thông tin'
+          }}</strong>
+          <input
+            fieldSize="tiny"
+            nbInput
+            *ngIf="fieldEdit.soDienThoai"
+            [value]="fieldEdit.soDienThoai"
+            (blur)="capNhatGiaTri()"
+            [(ngModel)]="fieldEdit.soDienThoai"
+          />
+        </p>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>
+        Thông tin công trình
+      </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <div class="row">
+          <div class="col-md-6">
+            <p>
+              Địa điểm xây dựng:
+              <strong>{{
+                diaChiService.toString(congTrinhXayDung?.diaChi)
+              }}</strong>
+            </p>
+            <p>Lô đất sô</p>
+            <p>Tại</p>
+            <p>Nguồn vốn</p>
+          </div>
+          <div class="col-md-6">
+            <p>
+              Diện tích:
+              <strong>{{ congTrinhXayDung?.dienTich }}m<sup>2</sup></strong>
+            </p>
+            <p>Tổng vốn đầu tư</p>
+          </div>
+        </div>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header> Quy mô </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ga-quy-mo-ctxd [maCTXD]="maCTXD"></ga-quy-mo-ctxd>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header> Hệ thống kỹ thuật </nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ga-he-thong-ky-thuat [maCTXD]="maCTXD"></ga-he-thong-ky-thuat>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>Đơn vị</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ct-don-vi *ngIf="maCTXD" [maCTXD]="maCTXD"></ct-don-vi>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>Tài liệu đính kèm</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ga-tai-lieu-dinh-kem
+          *ngIf="maCTXD"
+          [maCTXD]="maCTXD"
+        ></ga-tai-lieu-dinh-kem>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+    <!-- Hình ảnh công trình  -->
+    <nb-accordion-item>
+      <nb-accordion-item-header>Hình ảnh</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ga-hinh-anh [maCTXD]="maCTXD"></ga-hinh-anh>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+
+    <nb-accordion-item>
+      <nb-accordion-item-header>Vị trí</nb-accordion-item-header>
+      <nb-accordion-item-body>
+        <ga-ban-do *ngIf="maCTXD" [maCTXD]="maCTXD"></ga-ban-do>
+      </nb-accordion-item-body>
+    </nb-accordion-item>
+  </nb-accordion>
+</nb-card>

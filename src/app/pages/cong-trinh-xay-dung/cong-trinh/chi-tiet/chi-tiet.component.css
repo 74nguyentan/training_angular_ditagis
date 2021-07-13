@@ -1,0 +1,14 @@
+.thong-tin{
+    color: dodgerblue;
+    cursor: pointer;
+    text-decoration-line:underline
+}
+.nut-xoa{
+   float: right;
+}
+.tinh-trang{
+    margin-left: 20px;
+}
+.row{
+ margin-bottom: 10px;
+}

@@ -1,0 +1,14 @@
+<dn-auto-complete
+  #ac
+  [limit]="10"
+  [service]="service"
+  [allValue]="allValue"
+  fieldName="tenDonVi"
+  fieldValue="maDonVi"
+  [fullWidth]="fullWidth"
+  [(value)]="value"
+  [disabled]="disabled"
+  [isAdd]="isAdd"
+  (valueChange)="valueChange.emit($event)"
+  placeholder="Tên đơn vị (*)"
+></dn-auto-complete>

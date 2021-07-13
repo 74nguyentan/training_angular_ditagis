@@ -1,0 +1,17 @@
+<p>child02 works!</p>
+<a class="btn btn-success" (click)="eventChange.emit(name)">click child 02</a>
+
+<div class="row mt-4">
+    <div class="col-6">
+        <input class="form-control"  [(ngModel)]="name" #ctrl="ngModel" required>
+    </div>
+    <div class="col-6">
+        <p>Value: {{ name }}</p>
+        <!-- <p>Valid: {{ ctrl.valid }}</p> -->
+    </div>
+</div>
+
+<div class="row">
+    <p>Du lieu subject from child 01</p>
+    <p>-----> {{_textSubject}}</p>
+</div>

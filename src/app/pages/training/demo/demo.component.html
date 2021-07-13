@@ -1,0 +1,70 @@
+<div class="row">
+    <h3>chirl 01</h3>
+    <div class="col-12">
+        <ga-children-demo [name]="'NVT'" (messageEvent)="receiveMessage($event)"></ga-children-demo>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <h5>child 02</h5>
+    <div class="col-12">
+        <ga-child02 (eventChange)="change($event)"></ga-child02>
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <h5>child 03</h5>
+    <div class="col-12">
+        <label for="">1</label>
+        <ga-child03></ga-child03>
+        <label for="">2</label>
+        <ga-child03 #IdChil03></ga-child03>
+        <a class="btn btn-success" (click)="log()"> click</a>
+    </div>
+</div>
+<hr>
+<h1> main parent</h1>
+<p>demo chirld 01! ---> {{message}}</p>
+<p>demo chirld 02! ---> {{abc}}</p>
+<div class="row">
+    <div class=" col-6">
+        <a class="btn btn-success" routerLink="/training/children">load children componet</a>
+    </div>
+    <div class=" col-6">
+        <a class="btn btn-warning" routerLink="/training/demo02">load demo 02 componet</a>
+    </div>
+</div>
+
+
+
+<!-- <div class="row my-4 mx-5">
+    <input type="text" [(ngModel)]="text" nbInput>
+    <button class="btn btn-warning" (click)="table.loadData()">loc</button>
+</div> -->
+
+<div class="row my-4 mx-5">
+    <dn-auto-complete
+    (valueChange)="text = $event"
+    fieldName="tenCongTrinh"
+    placeholder="tenCongTrinh"
+    fieldValue="maCTXD"
+    [service]="dataService"
+  ></dn-auto-complete>
+  
+    <button class="btn btn-warning" (click)="table.loadData()">loc</button>
+</div>
+<ngn-datatable class="material" #table selectionType="single" [datatableService]="datatableService"
+    [externalPaging]="true" [limit]="10" [scrollbarH]="true">
+    <ngn-datatable-column prop="tenCongTrinh" name="Tên công trình" [width]="300" [frozenLeft]="true" [flexGrow]="2">
+        <ng-template ngn-datatable-cell-template let-value="value">
+            <span [nbTooltip]="value">{{ value }}</span>
+        </ng-template>
+    </ngn-datatable-column>
+    <ngn-datatable-column prop="chuDauTu.tenChuDauTu" name="chuDauTu" [width]="300" [frozenLeft]="true" [flexGrow]="2">
+        <ng-template ngn-datatable-cell-template let-value="value">
+            <span [nbTooltip]="value">{{ value }}</span>
+        </ng-template>
+    </ngn-datatable-column>
+</ngn-datatable>

@@ -1,0 +1,13 @@
+<nb-checkbox
+  *ngFor="let item of values"
+  class="filter-loai-ho-so mb-2"
+  [ngClass]="getLoaiCTCNTTClass(item.ma)"
+  [checked]="checkeds.indexOf(item.ma) > -1"
+  status="basic"
+  (checkedChange)="checkedChangeHandle(item.ma, $event)"
+>
+  <span>
+    <ng-container *ngIf="item.ten">{{ item.ten }}</ng-container>
+    <ng-content></ng-content
+  ></span>
+</nb-checkbox>

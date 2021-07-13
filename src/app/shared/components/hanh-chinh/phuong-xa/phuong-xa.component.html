@@ -1,0 +1,12 @@
+<dn-auto-complete
+  #ac
+  [builder]="builder"
+  [service]="service"
+  [allValue]="allValue"
+  fieldName="tenPhuongXa"
+  [fieldValue]="fieldValue"
+  [value]="value"
+  (valueChange)="valueChange.emit($event)"
+  [fullWidth]="fullWidth"
+  [placeholder]="'Phường/xã/thị trấn' + (required ? ' (*)' : '')"
+></dn-auto-complete>

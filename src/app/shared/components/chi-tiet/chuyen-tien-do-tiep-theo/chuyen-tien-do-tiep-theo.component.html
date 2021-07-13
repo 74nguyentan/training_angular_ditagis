@@ -1,0 +1,31 @@
+<button
+  nbButton
+  outline
+  status="primary"
+  [fullWidth]="true"
+  [disabled]="disabled"
+  [nbPopover]="popTD"
+  nbPopoverPlacement="bottom"
+  nbTooltip="Chuyển hồ sơ đến bước tiếp theo"
+  size="small"
+>
+  Chuyển hồ sơ
+</button>
+
+<ng-template #popTD>
+  <nb-card>
+    <nb-card-body>
+      <p>Bạn có muốn chuyển sang bước tiếp ?</p>
+      <button
+        [disabled]="status.saving"
+        [nbSpinner]="status.saving"
+        nbSpinnerSize="small"
+        nbButton
+        [fullWidth]="true"
+        (click)="chuyenBuoc()"
+      >
+        Đồng ý
+      </button>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

@@ -1,0 +1,16 @@
+<h4 style="color: red;">parent !</h4>
+<div class="row">
+    <div class="col-6">
+        <h6>INPUT</h6>
+        <i>( parent to children )</i><br>
+        <input type="text" nbInput [(ngModel)]="valueInput" >
+    </div>
+    <div class="col-6">
+        <h6>OUTPUT</h6>
+        <i>( children to parent )</i>
+        <p>Value ouput from child: <b style="color: red;">{{valuOuput}}</b></p>
+    </div>
+</div>
+
+<hr>
+<ga-children [childInput]="valueInput" (Ouput)="valueOuput($event)"></ga-children>

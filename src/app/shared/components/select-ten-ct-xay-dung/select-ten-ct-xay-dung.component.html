@@ -1,0 +1,12 @@
+<dn-auto-complete
+  [service]="congTrinhXayDungService"
+  [limit]="10"
+  [allValue]="allValue"
+  fieldName="tenCongTrinh"
+  fieldValue="maCTXD"
+  (valueChange)="valueChange.emit($event)"
+  [fullWidth]="fullWidth"
+  [disabled]="disabled"
+  [(value)]="value"
+  placeholder="Tên công trình"
+></dn-auto-complete>

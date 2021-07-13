@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-md-10">
+    <nb-tabset [nbSpinner]="status?.isLoading" status="info" size="small" (changeTab)="onChangeTab($event)">
+      <nb-tab *ngFor="let loaiHinhAnh of lstLoaiHinhAnh" tabTitle="{{ loaiHinhAnh.tenLoai }}"
+        tabId="{{ loaiHinhAnh.maLoai }}">
+        <div class="row">
+          <div *ngFor="let hinhAnh of lstHinhAnh" class="image-viewer col-md-3">
+            <div class="spotlight-group hinh-anh-cong-trinh" data-animation="fade" data-fullscreen="false"
+              data-maximize="false" data-minimize="false">
+              <a class="spotlight" href="{{hinhAnh?.file.webContentLink }}">
+                <img src="{{ hinhAnh?.file.webContentLink }}">
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-stretch">
+          <button [hidden]="!status.isShowBtn" nbSpinnerSize="medium" [nbSpinner]="status.isLoadingSpinner"
+            nbSpinnerStatus="primary" class="xem-them-btn" nbButton status="primary" outline (click)="xemThemHinhAnh()"
+            disabled="status.isLoadingSpinner">
+            {{ label }}
+          </button>
+        </div>
+        <div class="d-flex align-items-stretch" *ngIf="!checkIsHinhAnh() && !status.isLoading" >
+          <nb-icon icon="alert-circle-outline"></nb-icon>
+           Không tìm thấy hình ảnh trong loại hình ảnh này.
+        </div>
+        <div class="hold-height" *ngIf="!checkIsHinhAnh()"></div>
+      </nb-tab>
+    </nb-tabset>
+  </div>
+
+  <div class="col-md-2">
+    <button nbButton (click)="isOpenThemHinhAnh = true">
+      <nb-icon icon="cloud-upload-outline"></nb-icon>
+      Hình ảnh
+    </button>
+  </div>
+  <!-- Dialog them moi hinh anh -->
+  <dn-dialog class="dialog_image" [open]="isOpenThemHinhAnh" [width]="'100vw'" [maxWidth]="'100vw'">
+    <dn-dialog-header>
+      Thêm mới hình ảnh
+      <button nbButton status="primary" class="float-right" outline (click)="isOpenThemHinhAnh = false">
+        Đóng
+      </button>
+    </dn-dialog-header>
+    <!-- them moi hinh anh body -->
+    <dn-dialog-body>
+      <div class="row">
+        <div class="col-sm-8">
+          <ga-quan-ly-tep (selectedEvent)="selectedFile($event)" [fileTypeSelect]="fileTypeSelect"></ga-quan-ly-tep>
+        </div>
+        <div class="col-sm-4">
+          <nb-card>
+            <nb-card-header>
+              Thông tin hình ảnh
+            </nb-card-header>
+            <nb-card-body>
+              <!-- chon loai hinh anh hoac them moi -->
+              <dn-auto-complete [fullWidth]="true" [handleThemMoi]="themMoiLoaiHinhAnh" fieldName="tenLoai"
+                placeholder="Loại hình ảnh" fieldValue="maLoai" [service]="loaiHinhAnhCTXDService" [isAdd]="true"
+                [(value)]="addImageValue.maLoaiHinhAnh">
+                <dn-auto-complete-add-content>
+                  <input class="mb-2" [fullWidth]="true" nbInput placeholder="Nhập stt"
+                    [(ngModel)]="addLoaiHinhAnh.stt" />
+                  <input class="mb-2" [fullWidth]="true" nbInput placeholder="Nhập mã loại hình ảnh"
+                    [(ngModel)]="addLoaiHinhAnh.maLoai" />
+                  <input class="mb-2" [fullWidth]="true" nbInput placeholder="Nhập tên loại hình ảnh"
+                    [(ngModel)]="addLoaiHinhAnh.tenLoai" />
+                </dn-auto-complete-add-content>
+              </dn-auto-complete>
+              <input class="mt-2" type="text" [(ngModel)]="tenHinhAnh" nbInput fullWidth
+                placeholder="Nhập tên hình ảnh">
+              <div class="row">
+                <div class="col-md-6">
+                  <button class="mt-2 xoa" (click)="xoaThongTinVuaNhap()" size="small" status="danger"
+                    [fullWidth]="true" nbButton>Xóa
+                    trắng</button>
+                </div>
+                <div class="col-md-6">
+                  <button class="mt-2 them" [nbSpinner]="status.loadingAddImage" [disabled]="status.loadingAddImage" (click)="themMoi()" size="small"
+                    status="primary" [fullWidth]="true" nbButton>Thêm
+                    mới</button>
+                </div>
+              </div>
+              <div class="row">
+                <img class="image-preview mt-2" src="{{addImageValue?.file.webViewLink}}" alt="">
+              </div>
+            </nb-card-body>
+          </nb-card>
+        </div>
+      </div>
+    </dn-dialog-body>
+  </dn-dialog>
+</div>

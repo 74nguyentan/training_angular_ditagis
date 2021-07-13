@@ -1,0 +1,41 @@
+<div class="header_doc">
+    <p>{{title}}</p>
+    <p *ngIf="isAdd"><a (click)="isShowAddDoc = true">Thêm văn bản</a></p>
+</div>
+<div class="wp_doc">
+    <i *ngIf="!lstVanBanCTXD.length">Chưa có văn bản</i>
+    <div class="single_item" *ngFor="let item of lstVanBanCTXD">
+        <img src="https://i.ya-webdesign.com/images/pdf-to-transparent-png-9.png">
+        <div class="wp_item_content">
+            <p class="item_tiltel">{{item?.vanBan.soVanBan}}</p>
+            <p class="item_content">{{item?.vanBan.tenVanBan || 'Chưa có tên văn bản'}}</p>
+            <span (click)="xemVanBan(item.vanBan.file)">Xem</span>
+            <span style="margin-left: 10px;" (click)="alertDelVanBan(item.id)">Xóa</span>
+        </div>
+    </div>
+</div>
+<!-- dialog xóa văn bản -->
+<dn-dialog [open]="isShowReqDel">
+    <dn-dialog-body>
+        Bạn có chắc chắn muốn xóa ?
+    </dn-dialog-body>
+    <dn-dialog-footer>
+        <div style="display: flex; justify-content: space-around;">
+            <button nbButton outline status="primary" (click)="isShowReqDel=false">Hủy</button>
+            <button nbButton status="danger" (click)="xoaVanBan()">Xóa</button>
+        </div>
+    </dn-dialog-footer>
+</dn-dialog>
+<!-- Thêm mới văn bản -->
+<dn-dialog [open]="isShowAddDoc" [width]="'100vw'" [maxWidth]="'100vw'">
+    <dn-dialog-header>
+        <span>Thêm mới văn bản</span>
+        <button [style.float]="'right'" nbButton (click)="closeDialogVanBan()">Đóng</button>
+        <button [style.float]="'right'" status="primary" nbButton ghost (click)="getDataVanBan()">Làm mới</button>
+    </dn-dialog-header>
+    <dn-dialog-body *ngIf="maCTXD && isShowAddDoc">
+        Thêm văn bản
+        <ga-them-moi-van-ban [id]="maCTXD"></ga-them-moi-van-ban >
+    </dn-dialog-body>
+</dn-dialog>
+

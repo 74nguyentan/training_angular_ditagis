@@ -1,0 +1,12 @@
+<dn-auto-complete
+  [service]="loaiVonCongTrinhService"
+  [limit]="10"
+  [allValue]="allValue"
+  fieldName="tenLoai"
+  fieldValue="maLoai"
+  (valueChange)="valueChange.emit($event)"
+  [fullWidth]="fullWidth"
+  [disabled]="disabled"
+  [(value)]="value"
+  placeholder="Loại vốn công trình (*)"
+></dn-auto-complete>

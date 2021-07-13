@@ -1,0 +1,13 @@
+<dn-auto-complete
+  #ac
+  [limit]="10"
+  [builder]="builder"
+  [service]="service"
+  [allValue]="allValue"
+  fieldName="tenQuanHuyen"
+  [fieldValue]="fieldValue"
+  [fullWidth]="fullWidth"
+  [value]="value"
+  (valueChange)="valueChange.emit($event)"
+  [placeholder]="'Quận/Huyện/TP' + (required ? ' (*)' : '')"
+></dn-auto-complete>

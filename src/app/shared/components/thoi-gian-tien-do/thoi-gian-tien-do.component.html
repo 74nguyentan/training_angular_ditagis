@@ -1,0 +1,13 @@
+<span
+  *ngIf="displayValue"
+  [nbTooltip]="entity?.user?.displayName"
+  [ngStyle]="{ color: color }"
+>
+  {{ displayValue }}
+</span>
+<nb-badge
+  position="top right"
+  status="danger"
+  *ngIf="entity?.isTroNgai"
+  text="TN"
+></nb-badge>

@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-8">
+        <ga-quan-ly-tep [fileTypeSelect]="fileTypeSelect" (selectedEvent)="selectedFile($event)"></ga-quan-ly-tep>
+    </div>
+    <div class="col-md-4">
+        <nb-card>
+            <nb-card-header>Văn bản</nb-card-header>
+            <nb-card-body>
+                <div class="wp_input">
+                    <div class="mb-3">
+                        <ga-select-ten-ct-xay-dung [disabled]="status.disableInput" [fullWidth]="true" [(value)]="newVanBanCTXD.maCTXD">
+                        </ga-select-ten-ct-xay-dung>
+                    </div>
+                    <input nbInput placeholder="Tên văn bản" [fullWidth]="true" class="margin-bottom"
+                        [(ngModel)]="newVanBanCTXD.vanBan.tenVanBan">
+                    <input nbInput placeholder="Số" [fullWidth]="true" class="margin-bottom"
+                        [(ngModel)]="newVanBanCTXD.vanBan.soVanBan">
+                    <input nbInput type="date" placeholder="Ngày" [fullWidth]="true" class="margin-bottom"
+                        [(ngModel)]="newVanBanCTXD.vanBan.ngayPhatHanh">
+                    <nb-select placeholder="Loại văn bản" [fullWidth]="true" class="margin-bottom"
+                        [(ngModel)]="newVanBanCTXD.maLoaiVanBan">
+                        <nb-option *ngFor="let item of lstLoaiVanBanCTXD" [value]="item.maLoaiVanBan">{{item.tenLoaiVanBan}}</nb-option>
+                    </nb-select>
+                    <textarea rows="5" nbInput placeholder="Nội dung" [fullWidth]="true" class="margin-bottom"
+                        [(ngModel)]="newVanBanCTXD.vanBan.noiDung">
+                    </textarea>
+                    <p *ngIf="!newVanBanCTXD.vanBan.fileId">Chưa có tệp nào được chọn</p>
+                    <p *ngIf="newVanBanCTXD.vanBan.fileId">Đang chọn tệp <b>{{tenTepDuocChon}}</b></p>
+                </div>
+                <div class="wp_button">
+                    <button nbButton outline status="primary" (click)="xoaTrang()"> Xóa trắng</button>
+                    <button nbButton status="primary" [disabled]="status.saving" (click)="themMoiVanBan()"> Thêm mới</button>
+                </div>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>
