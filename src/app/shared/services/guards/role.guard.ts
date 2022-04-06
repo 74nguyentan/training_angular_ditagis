@@ -29,34 +29,6 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const appId = next.data.appId as string;
-    if (isNullOrUndefined(appId)) {
-      return true;
-    }
-    return this.cntkService
-      .getMany({
-        filter: [
-          {
-            field: 'applicationId' as keyof ChucNangNguoiDungEntity,
-            operator: '$eq',
-            value: appId,
-          },
-          {
-            field: 'userId' as keyof ChucNangNguoiDungEntity,
-            operator: '$eq',
-            value: this.authService.getInfo().userId,
-          },
-        ],
-      })
-      .pipe(
-        map((m) => (m.length ? true : false)),
-        tap((isAccess) => {
-          if (!isAccess) {
-            this.toast.danger('Không có quyền truy cập');
-            // this.authService.deAuthenticate();
-            // location.reload();
-          }
-        })
-      );
+    return true;
   }
 }

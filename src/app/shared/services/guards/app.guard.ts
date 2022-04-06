@@ -26,13 +26,6 @@ export class AppGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    return this.authService.isAccess({ appId: environment.appId.appId }).pipe(
-      tap((isAccess) => {
-        if (!isAccess) {
-          this.authService.deAuthenticate();
-          location.reload();
-        }
-      })
-    );
+    return true;
   }
 }
